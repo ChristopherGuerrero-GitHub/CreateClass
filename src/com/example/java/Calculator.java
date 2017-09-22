@@ -1,0 +1,94 @@
+package com.example.java;
+
+import com.example.java.utilities.MathHelper;
+
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class Calculator {
+
+    public static void main(String[] args) {
+
+        /*
+            This program Calculator.java invokes methods of a another class MathHelper. Initially the MathHelper
+            class did not exist and therefore the methods were within the main class Calculator. The same methods
+            were later migrated into the class MathHelper. Strings inputted from user are pass as arguments to the
+            methods in which they are converted with the Double class into double numeric format in order to do
+            calculations. ie. double var = Double.parseDouble(string);
+
+            Also note that the new class MathHelper was created in a different package not under the same package
+            as the Calculator main class.
+         */
+
+        String s1 = getInput("Enter a numeric value: ");
+        String s2 = getInput("Enter a numeric value: ");
+        String op = getInput("Choose an operation (+, -, *, /): ");
+
+        double result = 0;
+
+        try {
+            switch (op) {
+                case "+":
+                   // result = addValues(s1, s2);    // this will only work if using methods within this package.
+                    result = MathHelper.addValues(s1, s2); //this will work if using methods within utilities package.
+                    break;
+                case "-":
+                    //result = subtractValues(s1, s2); // this will only work if using methods within this package.
+                    result = MathHelper.subtractValues(s1, s2);//this will work if using methods within utilities package.
+                    break;
+                case "*":
+                    //result = multiplyValues(s1, s2); // this will only work if using methods within this package.
+                    result = MathHelper.multiplyValues(s1, s2); //this will work if using methods within utilities package.
+                    break;
+                case "/":
+                    //result = divideValues(s1, s2);  // this will only work if using methods within this package.
+                    result = MathHelper.divideValues(s1, s2);  //this will work if using methods within utilities package.
+                    break;
+                default:
+                    System.out.println("Unrecognized operation! ");
+                    return;
+
+            }
+
+            System.out.println("The answer is: " + result);
+        } catch (Exception e) {
+            System.out.println("Number formatting exception: " + e.getMessage());
+        }
+
+    }
+
+        private static String getInput(String prompt){
+            System.out.print(prompt);
+            Scanner sc = new Scanner(System.in);
+            return sc.nextLine();
+
+        }
+
+        //The following methods were copied and moved into another class called MathHelper that is part of a sub package
+        // called utilities.
+//        private static double addValues(String s1, String s2){
+//            double d1 = Double.parseDouble(s1);
+//            double d2 = Double.parseDouble(s2);
+//            return d1 + d2;
+//        }
+//
+//        private static double subtractValues(String s1, String s2){
+//            double d1 = Double.parseDouble(s1);
+//            double d2 = Double.parseDouble(s2);
+//            return d1 - d2;
+//        }
+//
+//        private static double multiplyValues(String s1, String s2){
+//            double d1 = Double.parseDouble(s1);
+//            double d2 = Double.parseDouble(s2);
+//            return d1 * d2;
+//        }
+//
+//        private static double divideValues(String s1, String s2){
+//            double d1 = Double.parseDouble(s1);
+//            double d2 = Double.parseDouble(s2);
+//            return d1 / d2;
+//        }
+
+
+}
